@@ -1,0 +1,49 @@
+.edit {
+    background-color: #FFF8EA;
+    padding-top: 10vh;
+    padding-bottom: 75vh;
+    align-items: center;
+}
+
+.editcif__container {
+    border-style: solid;
+    border-width: 5px;
+    border-color: #645CAA;
+    border-radius: 6px;
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    padding: 20px;
+    margin: 0 auto;
+    align-items: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.editcif__container > form > h5 {
+    margin: 5px 0px;
+}
+
+.editcif__container > form > input {
+    margin-bottom: 5px;
+    height: 25px;
+    width: 70%;
+}
+
+.editcif__container > form > textarea {
+    margin-bottom: 5px;
+    height: 100px;
+    width: 80%;
+}
+
+.editcif__container > form > button {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border-color: #645CAA;
+    border: 1px solid;
+    background-color: #645CAA;
+    color: #FFF8EA;
+    padding: 4px 7px;
+    font-size: large;
+}
