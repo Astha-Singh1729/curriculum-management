@@ -1,0 +1,44 @@
+.requests {
+    background-color: #FFF8EA;
+    align-items: center;
+    padding-top: 10vh;
+    padding-bottom: 75vh;
+}
+
+.requests__container {
+    border-style: solid;
+    border-width: 5px;
+    border-color: #645CAA;
+    border-radius: 6px;
+    display: flex;
+    margin: 0 auto;
+    width: fit-content;
+    flex-direction: column;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.requests__container > a {
+    text-decoration: none;
+    color: black;
+}
+
+.requests__heading {
+    display: flex;
+}
+
+.requests__heading > h5 {
+    padding: 10px;
+    margin: 0px;
+}
+
+.heading__name {
+    width: 40vw;
+}
+
+.heading__id {
+    width: 10vw;
+}
+
+.heading__faculty {
+    width: 20vw;
+}

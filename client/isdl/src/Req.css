@@ -1,0 +1,63 @@
+.req {
+    background-color: #FFF8EA;
+    padding-top: 10vh;
+    padding-bottom: 75vh;
+    align-items: center;
+}
+
+.req__container {
+    border-style: solid;
+    border-width: 5px;
+    border-color: #645CAA;
+    border-radius: 6px;
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    text-align: center;
+    margin: 0px 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.req__name {
+    margin: 10px 0px;
+    width: auto;
+}
+
+.req__id {
+    width: auto;
+    margin: 10px 0px;
+}
+
+.req__department {
+    width: auto;
+    margin: 10px 0px
+}
+
+.req__content {
+    width: auto;
+    justify-content: center;
+    padding: 10px 20px;
+}
+
+.req__buttons{
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+
+.req__buttons > button {
+    border-radius: 4px;
+    border-color: #645CAA;
+    border: 1px solid;
+    background-color: #645CAA;
+    color: #FFF8EA;
+    padding: 4px 7px;
+    font-size: large;
+}
+
+.req__approve {
+    margin-right: 15vw;
+}
+
+.req__deny {
+    margin-left: 15vw;
+}

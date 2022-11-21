@@ -1,0 +1,40 @@
+.view {
+    background-color: #FFF8EA;
+    align-items: center;
+    padding-top: 10vh;
+    padding-bottom: 75vh;
+}
+
+.viewcif__container {
+    border-style: solid;
+    border-width: 5px;
+    border-color: #645CAA;
+    border-radius: 6px;
+    display: flex;
+    width: fit-content;
+    flex-direction: column;
+    text-align: center;
+    margin: 0px 40px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.viewcif__name {
+    margin: 10px 0px;
+    width: auto;
+}
+
+.viewcif__id {
+    width: auto;
+    margin: 10px 0px;
+}
+
+.viewcif__department {
+    width: auto;
+    margin: 10px 0px
+}
+
+.viewcif__content {
+    width: auto;
+    justify-content: center;
+    padding: 10px 20px;
+}
