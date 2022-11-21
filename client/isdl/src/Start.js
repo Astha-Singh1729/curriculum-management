@@ -6,7 +6,7 @@ function Start() {
   return (
     <div className='start'>
     <Link to='/login'>
-      <div className='start__option1'>
+      <div className='start__option1' >
         Student
       </div>
       <div className='start__option2'>

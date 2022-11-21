@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import axios from "axios"
 import { Link } from 'react-router-dom'
 import Cif from './Cif'
 import './Home.css'
 
+
 function Home() {
+  const [cifs,setCifs] = useState([]);
+  const client = axios.create({
+    baseURL: "http://localhost"
+  })
+  useEffect(() => {
+    client.get("/cifsbydepartment").then((response) => {
+      const newcifs = response.data.filter(cif => cif.department === "computer science engineering")
+      setCifs(newcifs)
+    })
+  })
   return (
     <div className='home'>
       <div className='home__container'>
@@ -18,8 +30,9 @@ function Home() {
             Department
           </h5>
         </div>
-        <Link to="/view"><Cif id="CSE132" name="Introduction to Data Science" dep="Computer Science Engineering"></Cif></Link>
-        <Link to="/view"><Cif id="CSE132" name="Introduction to Data Science" dep="Computer Science Engineering"></Cif></Link>
+        {cifs.map(cif => (
+          <Link to="/view"><Cif id = {cif.id} name = {cif.course} dep={cif.department}></Cif></Link>
+        ))}
       </div>
     </div>
   )

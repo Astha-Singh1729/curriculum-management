@@ -18,6 +18,7 @@ function Header() {
       }
 
       {
+        window.location.pathname !== "/" && window.location.pathname !== "/login" && 
         <Link to="/requests" className='link__req'>
           <div className='header__req'>
             View Requests
