@@ -37,27 +37,32 @@ export class CIF {
   department: string;
   @Column()
   content: string;
-
-  @OneToMany(() => Bridge, (bridge) => bridge.cif)
-  bridge: Bridge[];
 }
 
 @Entity()
 export class Faculty extends Person {
-  @OneToMany(() => Bridge, (bridge) => bridge.faculty)
-  bridge: Bridge[];
+  cifs: number[];
 }
 
 @Entity()
-export class Bridge {
-  @ManyToOne(() => CIF, (cif) => cif.bridge)
-  cif: CIF;
+export class Requests {
+  @PrimaryGeneratedColumn()
+  id: number;
 
-  @ManyToOne(() => Faculty, (faculty) => faculty.bridge)
-  faculty: Faculty;
+  @Column()
+  course: string;
 
-  @PrimaryColumn()
-  temp_content: string;
+  @Column()
+  department: string;
+
+  @Column()
+  faculty: string;
+
+  @Column()
+  temp_cif: string;
+
+  @Column()
+  isrequested: boolean;
 }
 
 @Entity()

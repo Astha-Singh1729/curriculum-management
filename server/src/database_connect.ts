@@ -5,7 +5,7 @@ import {
   Student,
   Faculty,
   Administrator,
-  Bridge,
+  Requests,
 } from './stuff/entities/Data';
 export const AppDataSource = new DataSource({
   type: 'postgres',
@@ -14,7 +14,7 @@ export const AppDataSource = new DataSource({
   username: 'pepega',
   database: 'isdl',
   password: 'peepustrong',
-  entities: [CIF, Person, Student, Faculty, Administrator, Bridge],
+  entities: [CIF, Person, Student, Faculty, Administrator, Requests],
   synchronize: true,
   logging: true,
 });
