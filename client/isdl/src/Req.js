@@ -1,33 +1,69 @@
-import React, { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
+import { useNavigate, useParams } from 'react-router-dom'
 import './Req.css'
 
 function Req() {
-
+  const navigate = useNavigate();
+  const [name,setName] = useState('');
+  const [faculty,setFaculty] = useState('');
+  const [dep,setDep] = useState('');
+  const [content,setContent] = useState('');
+  const [cifid,setCifid] = useState('');
+  
   let { id } = useParams();
 
+  const handleApprove = e => {
+    e.preventDefault();
+    axios.post("https://curriculum-management-nhp.herokuapp.com/updatecif",{"id":cifid,"content":content}).then((response) => {
+    })
+    axios.post("https://curriculum-management-nhp.herokuapp.com/deleterequest",{"id":id}).then((response) => {
+      alert("Request has been approved");
+      if(response.status===200){
+       navigate("/requests");
+      }
+    })
+  }
+
+  const handleDeny = e => {
+    e.preventDefault();
+    axios.post("https://curriculum-management-nhp.herokuapp.com/deleterequest", {"id":id}).then((response) => {
+      console.log(response);
+      alert("Request has been denied");
+      if(response.status===200){
+        navigate("/requests");
+      }
+    })
+  }
+
   useEffect(() => {
-    //get name,content,dep from db
+    axios.post("https://curriculum-management-nhp.herokuapp.com/requestbyid",{"id":id}).then((response) => {
+      setName(response.data.course);
+      setDep(response.data.department);
+      setFaculty(response.data.faculty);
+      setContent(response.data.temp_cif);
+      setCifid(response.data.cifid);
+    })
   })
 
   return (
     <div className='req'>
       <div className='req__container'>
             <h4 className='req__name'>
-                Introduction to Data Science
+                {name}
             </h4>
             <h5 className='req__id'>
-                CSE123
+              {cifid}
             </h5>
             <h5 className='req__department'>
-                Computer Science Engineering
+                {dep}
             </h5>
             <div className='req__content'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id elit ut erat tristique feugiat et quis nibh. Aliquam erat volutpat. Vestibulum mattis magna sapien, a tincidunt eros congue sit amet. Maecenas placerat tellus risus, finibus ultrices quam blandit vitae. Nam at lobortis turpis. Maecenas ultrices libero felis, in vulputate libero dictum sed. Nunc commodo accumsan justo. Mauris sed nulla non dui pulvinar ultricies malesuada sit amet libero. Nulla vestibulum nisl ac lectus tincidunt bibendum. Nullam malesuada pretium orci, sit amet tempus nulla rutrum sed. Mauris tempor lacinia ipsum eu convallis. Nam id risus laoreet, rhoncus eros non, finibus ante. Ut ut mauris ultricies, aliquet diam blandit, hendrerit sapien. Suspendisse potenti.
+              {content}
             </div>
             <div className='req__buttons'>
-                <button type="submit" className='req__approve'>Approve</button>
-                <button type="submit" className='req__deny'>Deny</button>
+                <button type="submit" className='req__approve' onClick={handleApprove}>Approve</button>
+                <button type="submit" className='req__deny' onClick={handleDeny}>Deny</button>
             </div>
       </div>
     </div>

@@ -1,29 +1,38 @@
-import React, { useEffect } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { useStateValue } from './StateProvider'
 import './Viewcif.css'
 
 function Viewcif() {
     const [{userType}, dispatch] = useStateValue();
+    const [name,setName] = useState('');
+    const [content,setContent] = useState('');
+    const [dep,setDep] = useState('');
     console.log(userType);
     let { id } = useParams();
     useEffect(() => {
-        //get name,dep,content of cif by id
+        axios.post("https://curriculum-management-nhp.herokuapp.com/cifbyid",{"id": id}).then((response) => {
+            console.log(response.data);
+            setName(response.data.course);
+            setContent(response.data.content);
+            setDep(response.data.department);
+        })
     })
   return (
     <div className='view'>
         <div className='viewcif__container'>
             <h4 className='viewcif__name'>
-                Introduction to Data Science
+                {name}
             </h4>
             <h5 className='viewcif__id'>
                 {id}
             </h5>
             <h5 className='viewcif__department'>
-                Computer Science Engineering
+                {dep}
             </h5>
             <div className='viewcif__content'>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed id elit ut erat tristique feugiat et quis nibh. Aliquam erat volutpat. Vestibulum mattis magna sapien, a tincidunt eros congue sit amet. Maecenas placerat tellus risus, finibus ultrices quam blandit vitae. Nam at lobortis turpis. Maecenas ultrices libero felis, in vulputate libero dictum sed. Nunc commodo accumsan justo. Mauris sed nulla non dui pulvinar ultricies malesuada sit amet libero. Nulla vestibulum nisl ac lectus tincidunt bibendum. Nullam malesuada pretium orci, sit amet tempus nulla rutrum sed. Mauris tempor lacinia ipsum eu convallis. Nam id risus laoreet, rhoncus eros non, finibus ante. Ut ut mauris ultricies, aliquet diam blandit, hendrerit sapien. Suspendisse potenti.
+            {content}
             </div>
         </div>
       

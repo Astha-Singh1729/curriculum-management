@@ -13,7 +13,6 @@ import Viewcif from './Viewcif';
 
 function App() {
   const [{userType, user}, dispatch] = useStateValue();
-  const [token,setToken] = useState();
   return (
     <BrowserRouter>
     <div className="App">
