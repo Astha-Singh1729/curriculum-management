@@ -13,6 +13,7 @@ function Requests() {
     client.get("/requests").then((response) => {
       setRequests(response.data)
     })
+    //get list of requests from requests table 
   })
   return (
     <div className='requests'>
@@ -21,17 +22,14 @@ function Requests() {
                 <h5 className='heading__name'>
                     Course Name
                 </h5>
-                <h5 className='heading__id'>
-                    Course Id
-                </h5>
                 <h5 className='heading__faculty'>
                     Faculty Name
                 </h5>
             </div>
             {requests.map(req => (
-                <Link to="/req"><Cif id={req.id} name={req.course} dep={req.faculty}/></Link>
+                <Link to={"/req/"+req.id}><Cif id={req.cifid} name={req.course} dep={req.faculty}/></Link>
             ))}
-            
+            <Link to="/req/CSE132"><Cif id="CSE132" name="IDS" dep="Sakthi Balan"/></Link>
         </div>
     </div>
   )
