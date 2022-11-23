@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import './Req.css'
 
 function Req() {
+
+  let { id } = useParams();
+
+  useEffect(() => {
+    //get name,content,dep from db
+  })
+
   return (
     <div className='req'>
       <div className='req__container'>

@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
 import './Editcif.css'
 
 function Editcif() {
+  let { id } = useParams();
+  useEffect(() => {
+    //get edit cif 
+  })
   return (
     <div className='edit'>
       <div className='editcif__container'>
@@ -9,7 +14,7 @@ function Editcif() {
           <h5>Course Name</h5>
           <input defaultValue="Introduction to Computer Science" type="text"></input>
           <h5>Course Id</h5>
-          <input defaultValue={"CSE132"} type="text"></input>
+          <input defaultValue={id} type="text"></input>
           <h5>Department</h5>
           <input defaultValue={"Computer Science Engineering"} type="text"></input>
           <h5>Course Content</h5>
