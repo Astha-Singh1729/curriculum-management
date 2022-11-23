@@ -1,7 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom';
+import { useStateValue } from './StateProvider'
 import './Viewcif.css'
 
 function Viewcif() {
+    const [{userType}, dispatch] = useStateValue();
+    console.log(userType);
+    let { id } = useParams();
+    useEffect(() => {
+        //get name,dep,content of cif by id
+    })
   return (
     <div className='view'>
         <div className='viewcif__container'>
@@ -9,7 +17,7 @@ function Viewcif() {
                 Introduction to Data Science
             </h4>
             <h5 className='viewcif__id'>
-                CSE123
+                {id}
             </h5>
             <h5 className='viewcif__department'>
                 Computer Science Engineering

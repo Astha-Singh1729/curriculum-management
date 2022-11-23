@@ -13,7 +13,9 @@
     margin: 0 20px;
     font-size: 25px;
     width: fit-content;
+    color: #FFF8EA;
 }
+
 .header__title > a {
     text-decoration: none;
     color: #FFF8EA;
@@ -54,6 +56,11 @@
 .link__edit {
     position: absolute;
     right: 220px;
+}
+
+.link__edit1 {
+    position: absolute;
+    right: 90px;
 }
 
 .link__login{
