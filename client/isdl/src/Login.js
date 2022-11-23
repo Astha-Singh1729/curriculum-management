@@ -8,20 +8,18 @@ function Login() {
   const [username, setUsername ] = useState('');
   const [password, setPassword ] = useState('');
   const navigate = useNavigate();
-  const [{ userType, user }, dispatch] = useStateValue();
   const handleAuthentication = e => {
     e.preventDefault();
     console.log("hello");
-
-    axios.post("https://curriculum-management-nhp.herokuapp.com/userexists",{"usertype" : userType, "user" : username}).then((response) => {
+    console.log(localStorage.getItem('Type'));
+    axios.post("https://curriculum-management-nhp.herokuapp.com/userexists",{"usertype" : localStorage.getItem("Type"), "user" : username, "password" : password}).then((response) => {
       console.log(response.data);
       if(response.data){
-        dispatch({
-          type: 'SET_USER',
-          user: username
-        });
-        console.log(user);
+        localStorage.setItem('Username', username);
+        localStorage.setItem('Password', password);
         navigate("/home")
+      }else{
+        alert('Please try again!')
       }
     })
   }

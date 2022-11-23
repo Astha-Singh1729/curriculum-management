@@ -5,19 +5,22 @@ import './Editcif.css'
 import { useStateValue } from './StateProvider';
 
 function Editcif() {
-  const [{userType,user}, dispatch] = useStateValue();
   const [name,setName] = useState('');
     const [content,setContent] = useState('');
     const [dep,setDep] = useState('');
-    console.log(userType);
     let { id } = useParams();
     const help = e => {
       e.preventDefault();
-    console.log("hello");
-      axios.post("https://curriculum-management-nhp.herokuapp.com/insertrequest",{"course":name, "department":dep,"faculty":user,"temp_cif":content,"cifid":id}).then((response) => {
+      if(localStorage.getItem('Type') === "Faculty"){
+        axios.post("https://curriculum-management-nhp.herokuapp.com/insertrequest",{"course":name, "department":dep,"faculty":localStorage.getItem('Username'),"temp_cif":content,"cifid":id}).then((response) => {
         console.log(content)
         alert("Your request has been submitted");
       })
+      }else{
+        axios.post("https://curriculum-management-nhp.herokuapp.com/updatecif",{"id":id,"content":content}).then((response) => {
+    })
+    alert("cif has been edited");
+      }
     }
     useEffect(() => {
         axios.post("https://curriculum-management-nhp.herokuapp.com/cifbyid",{"id": id}).then((response) => {

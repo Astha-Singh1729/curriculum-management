@@ -3,28 +3,27 @@ import axios from "axios"
 import { Link } from 'react-router-dom'
 import Cif from './Cif'
 import './Home.css'
-import { useStateValue } from './StateProvider';
 
 
 function Home() {
   const [cifs,setCifs] = useState([]);
   const [dep,setDep] = useState('');
-  const [{ userType, user}, dispatch] = useStateValue();
   useEffect(() => {
-    if(userType === "Student"){
-      axios.post("https://curriculum-management-nhp.herokuapp.com/getstu",{"username":user}).then((response) => {
+    console.log("hello")
+    if(localStorage.getItem('Type') === "Student"){
+      axios.post("https://curriculum-management-nhp.herokuapp.com/getstu",{"username":localStorage.getItem('Username')}).then((response) => {
         setDep(response.data.branch);
       })
       console.log(dep);
       axios.post("https://curriculum-management-nhp.herokuapp.com/cifsbydepartment",{"department" : dep}).then((response) => {
         setCifs(response.data)
       })
-    }else if(userType === "Adm"){
+    }else if(localStorage.getItem('Type') === "Adm"){
       axios.post("https://curriculum-management-nhp.herokuapp.com/cifs").then((response) => {
         const newcifs = response.data
         setCifs(newcifs)
       })
-    }else if(userType === "Faculty"){
+    }else if(localStorage.getItem('Type') === "Faculty"){
       axios.post("https://curriculum-management-nhp.herokuapp.com/cifs").then((response) => {
         const newcifs = response.data
         setCifs(newcifs)

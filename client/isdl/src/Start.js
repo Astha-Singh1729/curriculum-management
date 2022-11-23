@@ -3,12 +3,12 @@ import { Link } from 'react-router-dom';
 import './Start.css';
 import { useStateValue } from './StateProvider';
 function Start() {
-  const [userType, dispatch] = useStateValue();
   const handleClick = event => {
-    dispatch({
-      type: 'SET_ROLE',
-      role: event.currentTarget.id,
-    });
+    // dispatch({
+    //   type: 'SET_ROLE',
+    //   role: event.currentTarget.id,
+    // });
+    localStorage.setItem('Type',event.currentTarget.id);
   };
   return (
     <div className='start'>
