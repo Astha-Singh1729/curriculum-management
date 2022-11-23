@@ -5,25 +5,27 @@ import { useStateValue } from './StateProvider'
 
 function Header() {
   const navigate = useNavigate();
-  const [{userType, user}, dispatch] = useStateValue();
   let { id } = useParams();
   const handleAuthentication = e => {
+    localStorage.removeItem("Username");
+    localStorage.removeItem("Type");
+    localStorage.removeItem("Password");
     navigate("/", {replace:true});
   }
   return (
     <div className='header'>
       <div className='header__title'>
-        {userType !== null && 
+        {localStorage.getItem('Username') !== null && 
         <Link to='/home'>CURRICULUM MANAGEMENT SYSTEM</Link>
         }
         {
-          userType === null && 
+          localStorage.getItem('Username') === null && 
           <>CURRICULUM MANAGEMENT SYSTEM</>
         }
         
       </div>
       {
-        window.location.pathname.split('/')[1] === "view" &&   userType === "Adm"  && 
+        window.location.pathname.split('/')[1] === "view" &&   localStorage.getItem('Type') === "Adm"  && 
         <Link to={"/edit/"+id} className='link__edit'>
           <div className='header__edit'>
             Edit CIF
@@ -32,7 +34,7 @@ function Header() {
       }
 
 {
-        window.location.pathname.split('/')[1] === "view" &&  userType === "Faculty" && 
+        window.location.pathname.split('/')[1] === "view" &&  localStorage.getItem('Type') === "Faculty" && 
         <Link to={"/edit/"+id} className='link__edit1'>
           <div className='header__edit'>
             Edit CIF
@@ -41,7 +43,7 @@ function Header() {
       }
 
       {
-        window.location.pathname !== "/" && window.location.pathname !== "/login" && userType === "Adm" &&
+        window.location.pathname !== "/" && window.location.pathname !== "/login" && localStorage.getItem('Type') === "Adm" &&
         <Link to="/requests" className='link__req'>
           <div className='header__req'>
             View Requests
@@ -50,7 +52,7 @@ function Header() {
       }
 
       {
-        user !== null && 
+        localStorage.getItem('Username') !== null && 
         <div className='link__login' onClick={handleAuthentication}>
         <button className='header__login'>
             Logout

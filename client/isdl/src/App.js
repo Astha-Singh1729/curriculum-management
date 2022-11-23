@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import {Routes,Route, BrowserRouter, useSearchParams} from 'react-router-dom';
+import {Routes,Route, BrowserRouter, Navigate, useNavigate} from 'react-router-dom';
 import './App.css';
 import Editcif from './Editcif';
 import Header from './Header';
@@ -8,20 +8,18 @@ import Login from './Login';
 import Req from './Req';
 import Requests from './Requests';
 import Start from './Start';
-import { useStateValue } from './StateProvider';
 import Viewcif from './Viewcif';
 
 function App() {
-  const [{userType, user}, dispatch] = useStateValue();
   return (
     <BrowserRouter>
     <div className="App">
       <Routes>
-        <Route path="/req/:id" element={<><Header/><Req/></>}/>
-        <Route path="/requests" element={<><Header/><Requests/></>}/>
-        <Route path="/edit/:id" element={<><Header/><Editcif/></>}/>
-        <Route path="/view/:id" element={<><Header/><Viewcif /></>}/>
-        <Route path="/home" element = { <><Header/><Home/></>}/>
+        <Route path="/req/:id" element={localStorage.getItem('Username') && localStorage.getItem('Type') === "Adm" && <><Header/><Req/></>}/>
+        <Route path="/requests" element={ localStorage.getItem('Username') && localStorage.getItem('Type') === "Adm" && <><Header/><Requests/></>}/>
+        <Route path="/edit/:id" element={ localStorage.getItem('Username') && (localStorage.getItem('Type') === "Faculty" || localStorage.getItem('Type') === "Adm") && <><Header/><Editcif/></>}/>
+        <Route path="/view/:id" element={ localStorage.getItem('Username') && <><Header/><Viewcif /></>}/>
+         <Route path="/home" element={ localStorage.getItem('Username') && <><Header/><Home/></>}/> 
         <Route path="/login" element = {<><Header/><Login/></>}/>
         <Route path="/" element={<><Header/><Start/></>}/>
       </Routes>

@@ -5,11 +5,9 @@ import { useStateValue } from './StateProvider'
 import './Viewcif.css'
 
 function Viewcif() {
-    const [{userType}, dispatch] = useStateValue();
     const [name,setName] = useState('');
     const [content,setContent] = useState('');
     const [dep,setDep] = useState('');
-    console.log(userType);
     let { id } = useParams();
     useEffect(() => {
         axios.post("https://curriculum-management-nhp.herokuapp.com/cifbyid",{"id": id}).then((response) => {
