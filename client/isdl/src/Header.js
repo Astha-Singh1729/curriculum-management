@@ -5,7 +5,7 @@ import { useStateValue } from './StateProvider'
 
 function Header() {
   const navigate = useNavigate();
-  const [{userType}, dispatch] = useStateValue();
+  const [{userType, user}, dispatch] = useStateValue();
   let { id } = useParams();
   const handleAuthentication = e => {
     navigate("/", {replace:true});
@@ -23,7 +23,7 @@ function Header() {
         
       </div>
       {
-        window.location.pathname.split('/')[1] === "view" &&   userType === "admin"  && 
+        window.location.pathname.split('/')[1] === "view" &&   userType === "Adm"  && 
         <Link to={"/edit/"+id} className='link__edit'>
           <div className='header__edit'>
             Edit CIF
@@ -32,7 +32,7 @@ function Header() {
       }
 
 {
-        window.location.pathname.split('/')[1] === "view" &&  userType === "faculty" && 
+        window.location.pathname.split('/')[1] === "view" &&  userType === "Faculty" && 
         <Link to={"/edit/"+id} className='link__edit1'>
           <div className='header__edit'>
             Edit CIF
@@ -41,7 +41,7 @@ function Header() {
       }
 
       {
-        window.location.pathname !== "/" && window.location.pathname !== "/login" && userType === "admin" &&
+        window.location.pathname !== "/" && window.location.pathname !== "/login" && userType === "Adm" &&
         <Link to="/requests" className='link__req'>
           <div className='header__req'>
             View Requests
@@ -50,11 +50,11 @@ function Header() {
       }
 
       {
-        userType !== null && 
+        user !== null && 
         <div className='link__login' onClick={handleAuthentication}>
-        <div className='header__login'>
+        <button className='header__login'>
             Logout
-        </div>
+        </button>
       </div>
       }
       

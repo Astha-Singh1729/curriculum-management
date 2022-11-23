@@ -6,14 +6,10 @@ import './Requests.css'
 
 function Requests() {
   const [requests,setRequests] = useState([]);
-  const client = axios.create({
-    baseURL: "http://localhost"
-  })
   useEffect(() => {
-    client.get("/requests").then((response) => {
+    axios.post("https://curriculum-management-nhp.herokuapp.com/requests").then((response) => {
       setRequests(response.data)
     })
-    //get list of requests from requests table 
   })
   return (
     <div className='requests'>
@@ -29,7 +25,6 @@ function Requests() {
             {requests.map(req => (
                 <Link to={"/req/"+req.id}><Cif id={req.cifid} name={req.course} dep={req.faculty}/></Link>
             ))}
-            <Link to="/req/CSE132"><Cif id="CSE132" name="IDS" dep="Sakthi Balan"/></Link>
         </div>
     </div>
   )

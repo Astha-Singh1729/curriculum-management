@@ -13,13 +13,13 @@ function Start() {
   return (
     <div className='start'>
     <Link to='/login'>
-      <div className='start__option1' id="student" onClick={handleClick}>
+      <div className='start__option1' id="Student" onClick={handleClick}>
         Student
       </div>
-      <div className='start__option2' id="faculty" onClick={handleClick}>
+      <div className='start__option2' id="Faculty" onClick={handleClick}>
         Faculty
       </div>
-      <div className='start__option3' id="admin" onClick={handleClick}>
+      <div className='start__option3' id="Adm" onClick={handleClick}>
         Admin
       </div>
       </Link>

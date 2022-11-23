@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from "./axios"
+import axios from "axios"
 import { Link } from 'react-router-dom'
 import Cif from './Cif'
 import './Home.css'
@@ -8,22 +8,25 @@ import { useStateValue } from './StateProvider';
 
 function Home() {
   const [cifs,setCifs] = useState([]);
+  const [dep,setDep] = useState('');
   const [{ userType, user}, dispatch] = useStateValue();
   useEffect(() => {
-    if(userType === "student"){
-      axios.post("/cifsbydepartment").then((response) => {
-        const newcifs = response.data.filter(cif => cif.department === user.dep)
-        setCifs(newcifs)
+    if(userType === "Student"){
+      axios.post("https://curriculum-management-nhp.herokuapp.com/getstu",{"username":user}).then((response) => {
+        setDep(response.data.branch);
       })
-    }else if(userType === "admin"){
-      axios.post("/cifs").then((response) => {
+      console.log(dep);
+      axios.post("https://curriculum-management-nhp.herokuapp.com/cifsbydepartment",{"department" : dep}).then((response) => {
+        setCifs(response.data)
+      })
+    }else if(userType === "Adm"){
+      axios.post("https://curriculum-management-nhp.herokuapp.com/cifs").then((response) => {
         const newcifs = response.data
         setCifs(newcifs)
       })
-    }else if(userType === "faculty"){
-
-      axios.post("/cifsbydepartment",{"department" : user.dep}).then((response) => {
-        const newcifs = response.data.filter(cif => cif.department === user.dep)
+    }else if(userType === "Faculty"){
+      axios.post("https://curriculum-management-nhp.herokuapp.com/cifs").then((response) => {
+        const newcifs = response.data
         setCifs(newcifs)
       })
     }
@@ -42,7 +45,6 @@ function Home() {
         {cifs.map(cif => (
           <Link to={"/view/"+cif.id}><Cif name = {cif.course} dep={cif.department}></Cif></Link>
         ))}
-        <Link to="/view/CSE12"><Cif id = "CSE132" name = "IDS" dep="CSE"></Cif></Link>
       </div>
     </div>
   )
